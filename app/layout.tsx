@@ -50,6 +50,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  verification:{
+    google: "wr2vURpdkNCjjvPitfZvUYuDLiV8f22VP-F4uoKVG80",
+  },
   twitter: {
     card: "summary_large_image",
     title: "Abhilash K S | Full-Stack Developer",
