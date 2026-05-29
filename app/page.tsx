@@ -16,11 +16,13 @@ import Footer from "@/components/Footer";
 export default function Home() {
   useEffect(() => {
     // Check if user has preferred reduced motion to respect settings
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     if (!prefersReducedMotion) {
       const reveals = document.querySelectorAll(".reveal");
-      
+
       const revealObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -29,10 +31,10 @@ export default function Home() {
             }
           });
         },
-        { 
+        {
           threshold: 0.1,
-          rootMargin: "0px 0px -60px 0px" // trigger slightly before fully on screen
-        }
+          rootMargin: "0px 0px -60px 0px", // trigger slightly before fully on screen
+        },
       );
 
       reveals.forEach((reveal) => revealObserver.observe(reveal));
@@ -52,26 +54,26 @@ export default function Home() {
     <>
       {/* Texture Grain Overlay */}
       <GrainOverlay />
-      
+
       {/* Sticky Editorial Navigation */}
       <Navbar />
 
       <main className="mt-16 bg-[#F8F6F2] relative z-10">
         {/* Hero Section */}
         <Hero />
-        
+
         {/* Narrative / About section */}
         <About />
-        
+
         {/* Services & Core Capabilities */}
         <Services />
-        
+
         {/* Technical philosophies */}
         <Philosophies />
-        
+
         {/* Immersive Case Studies */}
         <Projects />
-        
+
         {/* Technical stack infinite marquee divider */}
         <div className="py-12 border-y border-border-subtle bg-primary text-paper-white overflow-hidden my-16 select-none">
           <div className="marquee-container">
@@ -83,8 +85,9 @@ export default function Home() {
               <span className="text-[#ffb95f] opacity-65">FastAPI</span>
               <span className="text-white opacity-35">Express</span>
               <span className="text-[#ffb95f] opacity-65">Docker</span>
-              <span className="text-white opacity-35">Redis Caching</span>
-              
+              <span className="text-white opacity-35">Caching</span>
+              <span className="text-[#a8bfff] opacity-60">Deployment</span>
+
               {/* Loop replication */}
               <span className="text-[#a8bfff] opacity-60">React.js</span>
               <span className="text-white opacity-40">Next.js</span>
@@ -93,17 +96,18 @@ export default function Home() {
               <span className="text-[#ffb95f] opacity-65">FastAPI</span>
               <span className="text-white opacity-35">Express</span>
               <span className="text-[#ffb95f] opacity-65">Docker</span>
-              <span className="text-white opacity-35">Redis Caching</span>
+              <span className="text-white opacity-35">Caching</span>
+              <span className="text-[#a8bfff] opacity-60">Deployment</span>
             </div>
           </div>
         </div>
 
         {/* Dynamic GitHub contribution visual */}
         <OpenSource />
-        
+
         {/* Structural network grids */}
         <Socials />
-        
+
         {/* Clean, validated contact layout */}
         <Contact />
       </main>

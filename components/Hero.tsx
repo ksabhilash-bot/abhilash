@@ -2,18 +2,19 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { ArrowRight, ChevronRight, Server, Terminal, Cpu } from "lucide-react";
+import mee from "../public/mee.jpeg";
 
 export default function Hero() {
-  const [imgSrc, setImgSrc] = useState("/hero.jpg");
+  const [imgSrc, setImgSrc] = useState(mee.src);
   const [tryPng, setTryPng] = useState(false);
   const [coords, setCoords] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
-  
+
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleImageError = () => {
     if (!tryPng) {
-      setImgSrc("/hero.png");
+      setImgSrc(mee.src);
       setTryPng(true);
     } else {
       setImgSrc("/hero-fallback.png");
@@ -22,10 +23,11 @@ export default function Hero() {
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
-    const { left, top, width, height } = containerRef.current.getBoundingClientRect();
+    const { left, top, width, height } =
+      containerRef.current.getBoundingClientRect();
     const x = (e.clientX - left) / width - 0.5; // -0.5 to 0.5 range
     const y = (e.clientY - top) / height - 0.5;
-    
+
     // Scale up coordinates to 24px maximum movement
     setCoords({ x: x * 24, y: y * 24 });
   };
@@ -50,13 +52,18 @@ export default function Hero() {
             Full-Stack Software Craftsman
           </span>
         </div>
-        
+
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight text-primary">
           I Build High-Performance Digital Products That Scale.
         </h1>
-        
+
         <p className="font-sans text-base md:text-lg text-text-secondary leading-relaxed max-w-xl">
-          Hi, I&apos;m <strong className="text-primary font-semibold">Abhilash K S</strong>. I specialize in designing pixel-perfect, interactive React and Next.js interfaces paired with robust, highly-optimized backend architectures (FastAPI, Express, Node.js), containerized with Docker, and boosted by advanced caching systems.
+          Hi, I&apos;m{" "}
+          <strong className="text-primary font-semibold">Abhilash K S</strong>.
+          I specialize in designing pixel-perfect, interactive React and Next.js
+          interfaces paired with robust, highly-optimized backend architectures
+          (FastAPI, Express, Node.js), containerized with Docker, and boosted by
+          advanced caching systems.
         </p>
 
         {/* Dynamic Skill Badges */}
@@ -74,14 +81,14 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 pt-4">
-          <a 
+          <a
             className="bg-primary text-white px-8 py-4 text-center font-sans text-[10px] font-bold tracking-widest uppercase hover:bg-accent-blue hover:shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2"
             href="#work"
           >
             Explore My Work
             <ArrowRight size={14} />
           </a>
-          <a 
+          <a
             className="border border-primary text-primary px-8 py-4 text-center font-sans text-[10px] font-bold tracking-widest uppercase hover:bg-primary hover:text-white transition-all active:scale-[0.98] flex items-center justify-center gap-1.5"
             href="#contact"
           >
@@ -93,7 +100,7 @@ export default function Hero() {
 
       {/* Portrait Container with Mouse Parallax */}
       <div className="w-full md:w-2/5 order-1 md:order-2 flex justify-center">
-        <div 
+        <div
           ref={containerRef}
           onMouseMove={handleMouseMove}
           onMouseEnter={handleMouseEnter}
@@ -101,14 +108,16 @@ export default function Hero() {
           className="relative w-full max-w-[360px] h-[450px] md:h-[550px] border border-border-subtle overflow-hidden cursor-crosshair bg-surface-container select-none group"
           id="hero-img-container"
         >
-          <img 
-            alt="Abhilash K S Portrait" 
+          <img
+            alt="Abhilash K S Portrait"
             src={imgSrc}
             onError={handleImageError}
             className="w-full h-full object-cover grayscale group-hover:grayscale-0"
             style={{
               transform: `translate(${coords.x}px, ${coords.y}px) scale(${isHovered ? 1.08 : 1.02})`,
-              transition: isHovered ? "transform 0.05s ease-out, filter 0.8s ease" : "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease"
+              transition: isHovered
+                ? "transform 0.05s ease-out, filter 0.8s ease"
+                : "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease",
             }}
           />
           {/* Inner Drafting Frame Border */}
