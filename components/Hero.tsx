@@ -112,7 +112,7 @@ export default function Hero() {
             alt="Abhilash K S Portrait"
             src={imgSrc}
             onError={handleImageError}
-            className="w-full h-full object-cover grayscale group-hover:grayscale-0"
+            className="w-full h-full object-cover group-hover:grayscale"
             style={{
               transform: `translate(${coords.x}px, ${coords.y}px) scale(${isHovered ? 1.08 : 1.02})`,
               transition: isHovered
